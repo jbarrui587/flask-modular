@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: flask_api
+    ports:
+      - "8000:8000"
+    command: gunicorn --bind 0.0.0.0:8000 wsgi:app
+
