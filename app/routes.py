@@ -1,14 +1,15 @@
-from flask import Blueprint, request
+from flask import Blueprint
 import socket
+import os
 
-api_bp = Blueprint("api", __name__)
+web_bp = Blueprint("web", __name__)
 
-@api_bp.route("/info", methods=["GET"])
+@web_bp.route("/")
+def index():
+    return "<h1>Aplicación Flask P12</h1>"
+
+@web_bp.route("/info")
 def info():
-    container_name = socket.gethostname()
-    port = request.host.split(":")[-1]
-
-    return {
-        "container": container_name,
-        "port": port
-    }
+    hostname = socket.gethostname()
+    port = os.environ.get("PORT", "8000")
+    return f"Instancia: {hostname} - Puerto: {port}"
