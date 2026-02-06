@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 import logging
 
-api_bp = Blueprint("api_bp", __name__)
+from . import api_bp
 
 @api_bp.route("/status")
 def status():
